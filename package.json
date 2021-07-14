@@ -23,7 +23,7 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
     "release": "release-it",
-    "example": "yarn --cwd example",
+    "example": "yarn --cwd example"
   },
   "keywords": [
     "react-native",
