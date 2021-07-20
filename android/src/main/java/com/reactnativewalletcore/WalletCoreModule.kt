@@ -138,6 +138,11 @@ class WalletCoreModule(reactContext: ReactApplicationContext) : ReactContextBase
 
           promise.resolve(getAddressResponse(address, Numeric.toHexString(privateKey.data())))
         }
+
+        coinBitcoin -> {
+          val address = CoinType.Bitcoin.deriveAddress(privateKey)
+          promise.resolve(getAddressResponse(address, Numeric.toHexString(privateKey.data())))
+        }
         else -> promise.reject(errorUnsupportedCoin, "This coin is currently not supported")
       }
     }
