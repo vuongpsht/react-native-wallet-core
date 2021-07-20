@@ -24,6 +24,7 @@ class WalletCoreModule(reactContext: ReactApplicationContext) : ReactContextBase
     private val errorInvalidSigningParam = "ERROR_INVALID_SIGNING_PARAM"
 
     private val coinEthereum = "ethereum"
+    private val coinBitcoin = "bitcoin"
 
     private var wallet: HDWallet? = null
 
@@ -115,6 +116,9 @@ class WalletCoreModule(reactContext: ReactApplicationContext) : ReactContextBase
 
             promise.resolve(address)
           }
+        coinBitcoin -> {
+          val address :wallet!!.getAddressForCoin(CoinType.BITCOIN)
+        }
           else -> promise.reject(errorUnsupportedCoin, "This coin is currently not supported")
       }
     }
@@ -137,6 +141,7 @@ class WalletCoreModule(reactContext: ReactApplicationContext) : ReactContextBase
         else -> promise.reject(errorUnsupportedCoin, "This coin is currently not supported")
       }
     }
+
 
     @ReactMethod
     fun signTransactionForCoin(coin: String?, input: ReadableMap, promise: Promise) {
